@@ -19,12 +19,16 @@ import java.util.Properties;
  */
 public class BasicExample {
 
+    public static final String EXAMPLE_BASIC_WF = "example-basic";
+    public static final String GREET_TASK = "greet";
+    public static final String INPUT_NAME_VARIABLE = "input-name";
+
     public static Workflow getWorkflow() {
         return new WorkflowImpl(
-            "example-basic",
+                EXAMPLE_BASIC_WF,
             wf -> {
-                WfRunVariable theName = wf.addVariable("input-name", VariableType.STR).searchable();
-                wf.execute("greet", theName);
+                WfRunVariable theName = wf.addVariable(INPUT_NAME_VARIABLE, VariableType.STR).searchable();
+                wf.execute(GREET_TASK, theName);
             }
         );
     }
@@ -43,7 +47,7 @@ public class BasicExample {
 
     public static LHTaskWorker getTaskWorker(LHConfig config) {
         MyWorker executable = new MyWorker();
-        LHTaskWorker worker = new LHTaskWorker(executable, "greet", config);
+        LHTaskWorker worker = new LHTaskWorker(executable, GREET_TASK, config);
 
         // Gracefully shutdown
         Runtime.getRuntime().addShutdownHook(new Thread(worker::close));
