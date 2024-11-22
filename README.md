@@ -26,7 +26,7 @@ Run tests:
 
 ## Test Structure
 
-Add the LH dependencies `build.gradle` file:
+Add the LH dependencies to `build.gradle` file:
 
 ```groovy
 def lhVersion = '0.11.2'
@@ -67,19 +67,19 @@ test {
 }
 ```
 
-Then you should pass with bootstrapper you want to use. Example:
+Then you can pass which bootstrapper to use. Example:
 
 ```shell
 ./gradlew clean test -Dbootstrapper.class=io.littlehorse.e2e.ExternalLittleHorseBootstrapper
 ```
 
-> Notice thw `-D`.
+> Notice the `-D`.
 
 ### Using a Properties File
 
-LH test utils allows you set the default `bootstrapper.class`
+LH test utils allows you set the **default** `bootstrapper.class`
 using a property file. This is specially useful when running
-the test form the IDE.
+the test from an IDE.
 
 Create a `test/resources/test.properties` file with:
 
