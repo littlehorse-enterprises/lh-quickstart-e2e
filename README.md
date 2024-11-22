@@ -26,7 +26,7 @@ Run tests:
 
 ## Test Structure
 
-Add LH dependencies `build.gradle` file:
+Add the LH dependencies `build.gradle` file:
 
 ```groovy
 def lhVersion = '0.11.2'
@@ -40,9 +40,21 @@ dependencies {
 }
 ```
 
-## Environment Variables
+WIP
 
-## Using Properties File
+## Configurations
+
+### Using Environment Variables
+
+You can define which test bootstrapper to use passing env variables.
+This is useful when running the test inside a docker container or
+a pipeline. Example:
+
+```shell
+BOOTSTRAPPER_CLASS="io.littlehorse.e2e.ExternalLittleHorseBootstrapper" ./gradlew clean test
+```
+
+### Using System Properties
 
 Add a `bootstrapper.class` system property to `build.gradle` file:
 
@@ -53,4 +65,16 @@ test {
     useJUnitPlatform()
     systemProperty bootstrapperClassProperty, System.getProperty(bootstrapperClassProperty) ?: 'io.littlehorse.e2e.StandaloneBootstrapper'
 }
+```
+
+### Using a Properties File
+
+LH test utils allows you set the default `bootstrapper.class`
+using a property file. This is specially useful when running
+the test form the IDE.
+
+Create a `test/resources/test.properties` file with:
+
+```properties
+bootstrapper.class = io.littlehorse.e2e.StandaloneBootstrapper
 ```
