@@ -67,6 +67,14 @@ test {
 }
 ```
 
+Then you should pass with bootstrapper you want to use. Example:
+
+```shell
+./gradlew clean test -Dbootstrapper.class=io.littlehorse.e2e.ExternalLittleHorseBootstrapper
+```
+
+> Notice thw `-D`.
+
 ### Using a Properties File
 
 LH test utils allows you set the default `bootstrapper.class`
