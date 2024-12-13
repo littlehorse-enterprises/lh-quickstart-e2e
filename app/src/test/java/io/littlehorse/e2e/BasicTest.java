@@ -16,7 +16,6 @@ import static io.littlehorse.BasicExample.INPUT_NAME_VARIABLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @LHTest
-@WithWorkers("myWorker")
 public class BasicTest {
 
     @LHWorkflow(EXAMPLE_BASIC_WF)
@@ -24,6 +23,7 @@ public class BasicTest {
     private WorkflowVerifier verifier;
 
     @Test
+    @WithWorkers("myWorker")
     public void shouldSayHello() {
         verifier.prepareRun(basicWf, Arg.of(INPUT_NAME_VARIABLE, "Anakin Skywalker"))
                 .waitForStatus(LHStatus.COMPLETED)

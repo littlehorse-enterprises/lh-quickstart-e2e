@@ -40,7 +40,43 @@ dependencies {
 }
 ```
 
-WIP
+Create a test class:
+
+```java
+// Declare this is a E2E test
+@LHTest
+public class BasicTest {
+
+    // Inject the workflow to test
+    @LHWorkflow(EXAMPLE_BASIC_WF)
+    private Workflow basicWf;
+    private WorkflowVerifier verifier;
+
+    // Declare the test
+    @Test
+    // Run the custom workers
+    @WithWorkers("myWorker")
+    public void shouldSayHello() {
+        // In this test we run a workflow with the input variable: "Anakin Skywalker",
+        // then it waits for the status COMPLETED, and validates the result output from the worker
+        verifier.prepareRun(basicWf, Arg.of(INPUT_NAME_VARIABLE, "Anakin Skywalker"))
+                .waitForStatus(LHStatus.COMPLETED)
+                .thenVerifyTaskRunResult(0, 1, variableValue -> assertEquals(variableValue.getStr(), "Hello there! Anakin Skywalker"))
+                .start();
+    }
+
+    // Register a workflow
+    @LHWorkflow(EXAMPLE_BASIC_WF)
+    public Workflow registerWf() {
+        return BasicExample.getWorkflow();
+    }
+
+    // Initialize worker
+    public Object myWorker() {
+        return new MyWorker();
+    }
+}
+```
 
 ## Configurations
 
