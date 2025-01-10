@@ -26,7 +26,7 @@ Run tests:
 
 ## Test Structure
 
-Add the LH dependencies to `build.gradle` file:
+Add the LH dependencies to `app/build.gradle` file:
 
 ```groovy
 def lhVersion = '0.11.2'
