@@ -27,7 +27,7 @@ public class BasicTest {
     public void shouldSayHello() {
         verifier.prepareRun(basicWf, Arg.of(INPUT_NAME_VARIABLE, "Anakin Skywalker"))
                 .waitForStatus(LHStatus.COMPLETED)
-                .thenVerifyTaskRunResult(0, 1, variableValue -> assertEquals(variableValue.getStr(), "Hello there! Anakin Skywalker"))
+                .thenVerifyTaskRunResult(0, 1, variableValue -> assertEquals("Hello there! Anakin Skywalker", variableValue.getStr()))
                 .start();
     }
 
