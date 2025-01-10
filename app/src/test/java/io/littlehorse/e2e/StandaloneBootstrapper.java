@@ -9,7 +9,7 @@ public class StandaloneBootstrapper implements TestBootstrapper {
     private final LittleHorseCluster littleHorseCluster = LittleHorseCluster.newBuilder()
             .withInstances(2)
             .withKafkaImage("apache/kafka-native:3.8.0")
-            .withLittlehorseImage("ghcr.io/littlehorse-enterprises/littlehorse/lh-server:0.11.2")
+            .withLittlehorseImage("ghcr.io/littlehorse-enterprises/littlehorse/lh-server:0.12.2")
             .build();
 
     public StandaloneBootstrapper() {

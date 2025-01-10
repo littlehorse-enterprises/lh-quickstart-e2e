@@ -29,7 +29,7 @@ Run tests:
 Add the LH dependencies to `app/build.gradle` file:
 
 ```groovy
-def lhVersion = '0.11.2'
+def lhVersion = '0.12.2'
 
 dependencies {
     ...
